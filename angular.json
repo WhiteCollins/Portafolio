@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "09c16eef-4b1f-44c4-8d3b-f8233f1b90f7"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -25,7 +26,15 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/app/pages/home/home.component.css",
+              "src/app/shared/navbar/navbar.css",
+              "src/app/shared/footer/footer.css",
+              "src/app/pages/projects/projects.css",
+              "src/app/pages/skills/skills.css",
+              "src/app/pages/education/education.component.css",
+              "src/app/pages/contact/contact.css",
+              "src/app/pages/about/about.component.css"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
