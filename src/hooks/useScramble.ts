@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useReducedMotion } from './useReducedMotion'
 
-const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&/<>'
+// Solo mayúsculas: existen en todas las fuentes de título, así no se cuela una fuente de reserva.
+const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const DURATION = 1100
 
 /**

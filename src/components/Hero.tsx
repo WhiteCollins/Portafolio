@@ -7,6 +7,19 @@ import { Sigil } from './Sigil'
 
 const delay = (s: number) => ({ animationDelay: `${s}s` }) as CSSProperties
 
+/**
+ * El texto real (invisible) fija el tamaño de la línea y el texto animado se
+ * dibuja encima, así el descifrado nunca cambia el alto ni los saltos de línea.
+ */
+function NameLine({ text, shown, className = '' }: { text: string; shown: string; className?: string }) {
+  return (
+    <span className="relative block" aria-hidden="true">
+      <span className="invisible">{text}</span>
+      <span className={`absolute inset-0 ${className}`}>{shown}</span>
+    </span>
+  )
+}
+
 export function Hero() {
   const { t, paletteChanges } = usePreferences()
   const [line1, line2] = useScramble([profile.firstLine, profile.secondLine], paletteChanges)
@@ -23,8 +36,8 @@ export function Hero() {
             style={delay(0.15)}
             aria-label={`${profile.firstLine} ${profile.secondLine}`}
           >
-            <span className="block" aria-hidden="true">{line1}</span>
-            <span className="hero-name-accent block text-accent-text" aria-hidden="true">{line2}</span>
+            <NameLine text={profile.firstLine} shown={line1} />
+            <NameLine text={profile.secondLine} shown={line2} className="hero-name-accent text-accent-text" />
           </h1>
           <p className="animate-rise mb-[22px] font-mono text-[0.95rem] text-detail" style={delay(0.3)}>
             {profile.role}

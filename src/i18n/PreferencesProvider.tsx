@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { loadPaletteFonts } from '../lib/fonts'
 import { withViewTransition, type Origin } from '../lib/viewTransition'
 import { en } from './en'
 import { es } from './es'
@@ -65,6 +66,12 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
     document.querySelector('meta[name="description"]')?.setAttribute('content', t.meta.description)
   }, [lang, t])
 
+  // Precarga las fuentes de todas las paletas cuando la página ya está pintada.
+  useEffect(() => {
+    const id = window.setTimeout(() => PALETTES.forEach((p) => loadPaletteFonts(p, 10_000)), 1500)
+    return () => window.clearTimeout(id)
+  }, [])
+
   useEffect(() => {
     const onHash = () => {
       const next = location.hash.slice(1)
@@ -82,12 +89,15 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
   const setPalette = useCallback((next: PaletteId, origin?: Origin) => {
     write(PALETTE_KEY, next)
     history.replaceState(null, '', `#${next}`)
-    withViewTransition(() => {
-      // Se aplica al documento dentro de la transición para que la captura "nueva" ya tenga los colores.
-      applyPaletteToDocument(next)
-      setPaletteState(next)
-      setPaletteChanges((n) => n + 1)
-    }, origin)
+    // Espera las fuentes de la paleta nueva para que el revelado no muestre un cambio de tipografía a medias.
+    loadPaletteFonts(next).then(() =>
+      withViewTransition(() => {
+        // Se aplica al documento dentro de la transición para que la captura "nueva" ya tenga los colores.
+        applyPaletteToDocument(next)
+        setPaletteState(next)
+        setPaletteChanges((n) => n + 1)
+      }, origin),
+    )
   }, [])
 
   const value = useMemo(
