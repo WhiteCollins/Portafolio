@@ -35,6 +35,7 @@
   --p-display-weight: 800;
   --p-display-track: 0.04em;
   --p-display-size: clamp(2rem, 5.2vw, 3.6rem);
+  --p-name-ems: 11.25;
   --p-cut: 14px;
   --p-mark: "//";
   color-scheme: dark;
@@ -68,6 +69,7 @@
   --p-display-weight: 700;
   --p-display-track: 0.03em;
   --p-display-size: clamp(2.1rem, 5.4vw, 3.8rem);
+  --p-name-ems: 10;
   --p-cut: 0px;
   --p-mark: "§";
   color-scheme: light;
@@ -101,6 +103,7 @@
   --p-display-weight: 700;
   --p-display-track: 0.06em;
   --p-display-size: clamp(2.5rem, 6.4vw, 4.6rem);
+  --p-name-ems: 8.2;
   --p-cut: 18px;
   --p-mark: "▲";
   color-scheme: dark;
@@ -198,8 +201,15 @@
   }
 }
 
+/*
+ * Tamaño del nombre: el de la paleta, salvo que "JIMÉNEZ COLLINS" no quepa en
+ * una línea; entonces se reduce al ancho del contenedor (100cqi).
+ * --p-name-ems es el ancho de esa línea en em con la fuente de cada paleta:
+ * si cambia el nombre, hay que volver a medirlo.
+ */
 @utility text-display {
-  font-size: var(--p-display-size);
+  font-size: min(var(--p-display-size), calc(100cqi / var(--p-name-ems)));
+  white-space: nowrap;
 }
 
 /* ---------- Componentes ---------- */

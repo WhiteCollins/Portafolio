@@ -27,7 +27,7 @@ export function Hero() {
   return (
     <section id="inicio" className="hero relative overflow-hidden">
       <div className="wrap grid items-center gap-9 py-12 md:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] md:gap-12 md:pt-[72px] md:pb-16">
-        <div>
+        <div className="@container min-w-0">
           <p className="mark-before animate-rise font-mono text-[0.8rem] uppercase tracking-[0.14em] text-detail" style={delay(0.05)}>
             {t.hero.eyebrow}
           </p>
