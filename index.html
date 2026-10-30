@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es" data-palette="zero">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Eric Jiménez Collins · Desarrollador de software</title>
+    <meta name="description" content="Portafolio de Eric Alberto Jiménez Collins, desarrollador Full Stack (.NET, React, Oracle) en Santo Domingo, República Dominicana." />
+    <meta name="author" content="Eric Alberto Jiménez Collins" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Eric Jiménez Collins · Desarrollador de software" />
+    <meta property="og:description" content="Desarrollador Full Stack: .NET, React, Angular, Oracle y SQL Server." />
+    <meta name="theme-color" content="#1a162b" />
+    <script>
+      // Aplica la paleta guardada antes de pintar, para evitar un parpadeo de colores.
+      try {
+        var p = ['zero', 'britannia', 'guren'], h = location.hash.slice(1), s = localStorage.getItem('ejc-palette')
+        var v = p.indexOf(h) >= 0 ? h : p.indexOf(s) >= 0 ? s : null
+        if (v) document.documentElement.dataset.palette = v
+      } catch (e) {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Chakra+Petch:wght@400;500;600&family=Cinzel:wght@500;700&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@600;800&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
